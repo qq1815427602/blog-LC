@@ -34,7 +34,6 @@
         <swagger2.version>2.9.2</swagger2.version>
         <mybatis.version>2.1.1</mybatis.version>
         <jjwt.version>0.9.1</jjwt.version>
-        <druid.version>1.1.20</druid.version>
         <pagehelper-starter.version>5.1.10</pagehelper-starter.version>
         <figurebed-dao>1.0-SNAPSHOT</figurebed-dao>
         <blog-version>1.0-SNAPSHOT</blog-version>
@@ -45,18 +44,8 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.1.1</version>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -84,11 +73,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
-        </dependency>
+        </dependency>-->
 
         <!--邮箱验证码-->
         <dependency>
@@ -110,14 +99,6 @@
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper</artifactId>
                 <version>${pagehelper-starter.version}</version>
-            </dependency>
-
-            <!--集成druid连接池-->
-            <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid</artifactId>
-                <version>${druid.version}</version>
             </dependency>
 
             <!--Hutool Java工具包-->
