@@ -1,5 +1,10 @@
 package com.domain.middleware;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.io.Serializable;
 
 /**
@@ -7,6 +12,11 @@ import java.io.Serializable;
 * @Author: 夜空
 * @Date: 2020/1/31
 */
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ReSetArtitleSort implements Serializable {
     /**
      * 文章ID
@@ -18,29 +28,4 @@ public class ReSetArtitleSort implements Serializable {
      */
     private Long sortId;
 
-    private static final long serialVersionUID = 1L;
-
-    public Long getArticleId() {
-        return articleId;
-    }
-
-    public void setArticleId(Long articleId) {
-        this.articleId = articleId;
-    }
-
-    public Long getSortId() {
-        return sortId;
-    }
-
-    public void setSortId(Long sortId) {
-        this.sortId = sortId;
-    }
-
-    public ReSetArtitleSort(Long articleId, Long sortId) {
-        this.articleId = articleId;
-        this.sortId = sortId;
-    }
-
-    public ReSetArtitleSort() {
-    }
 }

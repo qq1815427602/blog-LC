@@ -1,5 +1,10 @@
 package com.domain.middleware;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.io.Serializable;
 
 /**
@@ -7,6 +12,11 @@ import java.io.Serializable;
 * @Author: 夜空
 * @Date: 2020/1/31
 */
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ReSetArtitleLabel implements Serializable {
     /**
      * 文章ID
@@ -17,30 +27,4 @@ public class ReSetArtitleLabel implements Serializable {
      * 标签ID
      */
     private Long labelId;
-
-    private static final long serialVersionUID = 1L;
-
-    public Long getArticleId() {
-        return articleId;
-    }
-
-    public void setArticleId(Long articleId) {
-        this.articleId = articleId;
-    }
-
-    public Long getLabelId() {
-        return labelId;
-    }
-
-    public void setLabelId(Long labelId) {
-        this.labelId = labelId;
-    }
-
-    public ReSetArtitleLabel(Long articleId, Long labelId) {
-        this.articleId = articleId;
-        this.labelId = labelId;
-    }
-
-    public ReSetArtitleLabel() {
-    }
 }
