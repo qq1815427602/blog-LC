@@ -33,6 +33,7 @@ public class JwtTokenUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtTokenUtil.class);
     private static final String CLAIM_KEY_USERNAME = "sub";
     private static final String CLAIM_KEY_CREATED = "created";
+    private static final String CLAIM_KEY_USERID="userId";
     @Value("${jwt.secret}")
     private String secret;
     @Value("${jwt.expiration}")
@@ -41,7 +42,7 @@ public class JwtTokenUtil {
     private String authorization;
 
     /**
-     * 根据负责生成JWT的token
+     * 根据负责生成JWT的tokengenerateToken
      */
     private String generateToken(Map<String, Object> claims) {
         return Jwts.builder()
@@ -99,6 +100,22 @@ public class JwtTokenUtil {
     }
 
     /**
+     * 或取用户 id ,
+     * @param token token
+     * @return id, 没有则返回 0
+     */
+    public Integer getUserId(String token){
+        Integer id;
+        try {
+            Claims claims=getClaimsFromToken(token);
+            id=Integer.parseInt(claims.get(CLAIM_KEY_USERID).toString());
+        }catch (Exception e){
+            id=0;
+        }
+        return id;
+    }
+
+    /**
      * 验证token是否还有效
      *
      * @param token       客户端传入的token
@@ -128,10 +145,11 @@ public class JwtTokenUtil {
     /**
      * 根据用户信息生成token
      */
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(UserDetails userDetails,long uid) {
         Map<String, Object> claims = new HashMap<>();
         claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
         claims.put(CLAIM_KEY_CREATED, new Date());
+        claims.put(CLAIM_KEY_USERID,uid);
         return generateToken(claims);
     }
 

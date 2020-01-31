@@ -1,5 +1,7 @@
 package com.security.config;
 
+import com.dao.user.ReUsersDao;
+import com.domain.user.ReUsers;
 import com.security.component.AdminUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

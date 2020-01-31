@@ -84,4 +84,5 @@ public class ReUsers implements Serializable {
      */
     private Integer userState;
 
+    private List<ReRoles> rolesList;
 }
