@@ -1,5 +1,10 @@
 package com.domain.middleware;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.io.Serializable;
 
 /**
@@ -7,6 +12,11 @@ import java.io.Serializable;
 * @Author: 夜空
 * @Date: 2020/1/31
 */
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ReSetUsersRole implements Serializable {
     /**
      * 编号ID
@@ -23,29 +33,4 @@ public class ReSetUsersRole implements Serializable {
      */
     private Long userId;
 
-    private static final long serialVersionUID = 1L;
-
-    public Long getUsersRoleId() {
-        return usersRoleId;
-    }
-
-    public void setUsersRoleId(Long usersRoleId) {
-        this.usersRoleId = usersRoleId;
-    }
-
-    public Long getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
 }

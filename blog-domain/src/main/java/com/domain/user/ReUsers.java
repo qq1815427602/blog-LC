@@ -84,13 +84,9 @@ public class ReUsers implements Serializable {
      */
     private Integer userState;
 
-<<<<<<< HEAD
     /**
      * 用户角色一对多
      */
     private List<ReRoles> rolesList;
 
-=======
-    private List<ReRoles> rolesList;
->>>>>>> 4ec7fa918f87ff1144d56661d1db6cd7deeb7cf9
 }

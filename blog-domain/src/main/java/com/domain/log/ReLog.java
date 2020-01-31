@@ -1,5 +1,10 @@
 package com.domain.log;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,6 +13,11 @@ import java.util.Date;
 * @Author: 夜空
 * @Date: 2020/1/31
 */
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ReLog implements Serializable {
     /**
      * 日志编号
@@ -29,47 +39,4 @@ public class ReLog implements Serializable {
      */
     private Date logCreatetime;
 
-    private static final long serialVersionUID = 1L;
-
-    public Long getLogId() {
-        return logId;
-    }
-
-    public void setLogId(Long logId) {
-        this.logId = logId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getLogInfo() {
-        return logInfo;
-    }
-
-    public void setLogInfo(String logInfo) {
-        this.logInfo = logInfo;
-    }
-
-    public Date getLogCreatetime() {
-        return logCreatetime;
-    }
-
-    public void setLogCreatetime(Date logCreatetime) {
-        this.logCreatetime = logCreatetime;
-    }
-
-    public ReLog(Long logId, Long userId, String logInfo, Date logCreatetime) {
-        this.logId = logId;
-        this.userId = userId;
-        this.logInfo = logInfo;
-        this.logCreatetime = logCreatetime;
-    }
-
-    public ReLog() {
-    }
 }
