@@ -8,4 +8,8 @@
     <result column="role_createtime" jdbcType="TIMESTAMP" property="roleCreatetime" />
     <result column="role_description" jdbcType="VARCHAR" property="roleDescription" />
   </resultMap>
+
+  <insert id="roleBind" useGeneratedKeys="true" keyColumn="users_role_id">
+    insert into re_set_users_role(role_id, user_id) values (#{roles_id},#{user_id});
+  </insert>
 </mapper>
