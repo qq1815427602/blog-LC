@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.articles.ReLabelsDao">
+  <resultMap id="ReLabelsResultMap" type="com.domain.articles.ReLabels">
+    <id column="label_id" jdbcType="BIGINT" property="labelId" />
+    <result column="label_name" jdbcType="VARCHAR" property="labelName" />
+    <result column="label_alias" jdbcType="VARCHAR" property="labelAlias" />
+    <result column="label_description" jdbcType="LONGVARCHAR" property="labelDescription" />
+  </resultMap>
+</mapper>
