@@ -57,6 +57,16 @@ spring:
   #and overriding is disabled.
   main:
     allow-bean-definition-overriding: true
+  servlet:
+    #文件上传
+    multipart:
+      enabled: true
+      #单文件上传最大大小，默认1Mb
+      max-file-size: 5MB
+      #多文件上传时最大大小,默认10Mb
+      max-request-size: 50MB
+      #上传的临时目录
+      location: /
 mybatis:
   mapper-locations:
     - classpath:dao/articles/*.xml
