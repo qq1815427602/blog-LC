@@ -62,17 +62,15 @@ mybatis:
   type-aliases-package: com.com.domain
 server:
   port: 8088
-
 jwt:
   tokenHeader: Authorization  #JWT存储的请求头
   secret: onedayoneday #JWT加密使用的密钥
   expiration: 604800 #JWT的超期限时间(60*60*24)
   tokenHead: Bearer  #JWT负载中拿到开头
-
 #拦截忽略
 secure:
   #安全路径白名单
-  ignore:
+  ignored:
     urls:
       - /
       - /v2/**
