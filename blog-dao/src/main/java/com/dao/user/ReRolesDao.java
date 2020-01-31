@@ -1,6 +1,9 @@
 package com.dao.user;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
 * @Description: 角色数据访问层接口
@@ -9,6 +12,12 @@ import org.springframework.stereotype.Repository;
 */
 
 @Repository
+@Mapper
 public interface ReRolesDao {
-
+    /**
+     * 绑定用户角色
+     * @param userId
+     * @param roleId
+     */
+    int roleBind(@Param("user_id") long userId, @Param("roles_id") Integer roleId);
 }

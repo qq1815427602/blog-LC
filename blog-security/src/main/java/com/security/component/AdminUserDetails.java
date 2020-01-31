@@ -1,5 +1,6 @@
 package com.security.component;
 
+import com.domain.user.ReUsers;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

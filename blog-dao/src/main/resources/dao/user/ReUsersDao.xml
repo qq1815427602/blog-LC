@@ -15,9 +15,36 @@
     <result column="user_nickname" jdbcType="VARCHAR" property="userNickname" />
     <result column="user_wechat_id" jdbcType="VARCHAR" property="userWechatId" />
     <result column="user_state" jdbcType="INTEGER" property="userState" />
+    <collection property="rolesList" ofType="com.domain.user.ReRoles">
+      <id property="roleId" column="rid"/>
+      <result property="roleName" column="roleName"/>
+    </collection>
   </resultMap>
 
   <select id="findByUserEmail" parameterType="string" resultMap="ReUsersResultMap">
-
+    select u.user_id,
+       u.user_email,
+       u.user_password,
+       u.user_profile_photo,
+       u.user_registration_time,
+       u.user_birthday,
+       u.user_age,
+       u.user_telephone_number,
+       u.user_nickname,
+       u.user_wechat_id,
+       u.user_state,
+       u.user_ip,
+       r.role_id as rid,
+       r.role_name as roleName
+    from re_users u
+    join re_set_users_role ur on u.user_id = ur.user_id
+    join re_roles r on ur.role_id = r.role_id
+    where u.user_email=#{email};
   </select>
+
+  <insert id="registeredUser" parameterType="com.domain.user.ReUsers" useGeneratedKeys="true" keyColumn="user_id" keyProperty="userId">
+        insert  into
+        `re_users`(`user_ip`,`user_name`,`user_password`,`user_email`,`user_profile_photo`,`user_birthday`,`user_age`,`user_telephone_number`,`user_nickname`,`user_wechat_id`,`user_state`)
+        values (#{userIp},#{userName},#{userPassword},#{userEmail},#{userProfilePhoto},#{userBirthday},#{userAge},#{userTelephoneNumber},#{userNickname},#{userWechatId},#{userState});
+  </insert>
 </mapper>

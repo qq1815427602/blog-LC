@@ -13,5 +13,17 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface ReUsersDao {
+    /**
+     * 通过邮箱查询用户
+     * @param email
+     * @return
+     */
     ReUsers findByUserEmail(String email);
+
+    /**
+     * 用户注册
+     * @param reUsers
+     * @return
+     */
+    Integer registeredUser(ReUsers reUsers);
 }
