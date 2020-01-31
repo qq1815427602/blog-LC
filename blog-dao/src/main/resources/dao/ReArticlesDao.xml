@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ReArticlesDao">
+  <resultMap id="ReArticlesResultMap" type="com.domain.ReArticles">
+    <id column="article_id" jdbcType="BIGINT" property="articleId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="article_views" jdbcType="BIGINT" property="articleViews" />
+    <result column="article_comment_count" jdbcType="BIGINT" property="articleCommentCount" />
+    <result column="article_date" jdbcType="TIMESTAMP" property="articleDate" />
+    <result column="article_like_count" jdbcType="BIGINT" property="articleLikeCount" />
+    <result column="article_state" jdbcType="INTEGER" property="articleState" />
+    <association property="ReUsers" javaType="ReUsers" resultMap="com.dao.ReUsersDao"> </association>
+  </resultMap>
+  
+  <select id="test" resultMap="ReArticles" parameterType="ReArticles">
+    SELECT u.`user_name` FROM re_articles a , re_users u WHERE a.`article_id` = #{articleId} ;
+  </select>
+  
+</mapper>

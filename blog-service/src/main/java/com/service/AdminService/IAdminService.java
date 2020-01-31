@@ -1,4 +1,4 @@
-package com.AdminService;
+package com.service.AdminService;
 
 import com.domain.AdminUser;
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ReCommentsDao">
+  <resultMap id="ReCommentsResultMap" type="com.domain.ReComments">
+    <id column="comment_id" jdbcType="BIGINT" property="commentId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="article_id" jdbcType="BIGINT" property="articleId" />
+    <result column="comment_like_count" jdbcType="BIGINT" property="commentLikeCount" />
+    <result column="comment_date" jdbcType="TIMESTAMP" property="commentDate" />
+    <result column="parent_comment_id" jdbcType="BIGINT" property="parentCommentId" />
+    <result column="comment_state" jdbcType="INTEGER" property="commentState" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.domain.ReComments">
+    <result column="comment_content" jdbcType="LONGVARCHAR" property="commentContent" />
+  </resultMap>
+</mapper>

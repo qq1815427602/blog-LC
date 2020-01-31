@@ -1,6 +1,6 @@
-package com.AdminService.Impl;
+package com.service.AdminService.Impl;
 
-import com.AdminService.IAdminService;
+import com.service.AdminService.IAdminService;
 import com.domain.AdminUser;
 import org.springframework.stereotype.Service;
 
