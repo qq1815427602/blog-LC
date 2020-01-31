@@ -1,7 +1,7 @@
 spring:
   datasource:
     # &allowMultiQueries=true 一个方法中插入使用多条 sql 语句
-    url: jdbc:mysql://localhost:3306/figurebed?useSSL=false&allowMultiQueries=true&characterEncoding=UTF8&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/re_blog?useSSL=false&allowMultiQueries=true&characterEncoding=UTF8&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
@@ -50,8 +50,43 @@ spring:
         login-username: admin
         # 登录密码
         login-password: admin
+  #下面这个配置解决下面问题
+  #The bean 'jwtTokenUtil', defined in class path resource
+  #[com/security/config/SecurityConfig.class], could not be registered.
+  #A bean with that name has already been defined in file [E:\JAVA\blog-lc\blog-common\target\classes\com\common\jwt\JwtTokenUtil.class]
+  #and overriding is disabled.
+  main:
+    allow-bean-definition-overriding: true
 mybatis:
   mapper-locations: classpath:mappers/*.xml
   type-aliases-package: com.com.domain
 server:
-  port: 8080
+  port: 8088
+
+jwt:
+  tokenHeader: Authorization  #JWT存储的请求头
+  secret: onedayoneday #JWT加密使用的密钥
+  expiration: 604800 #JWT的超期限时间(60*60*24)
+  tokenHead: Bearer  #JWT负载中拿到开头
+
+#拦截忽略
+secure:
+  #安全路径白名单
+  ignore:
+    urls:
+      - /
+      - /v2/**
+      - /swagger-ui.html
+      - /swagger-resources/**
+      - /swagger/**
+      - /**/v2/api-docs
+      - /**/*.js
+      - /**/*.css
+      - /**/*.png
+      - /**/*.ico
+      - /webjars/**
+      #  - /webjars/springfox-swagger-ui/**
+      - /druid/**
+      - /actuator/**
+      - /sso/**
+      - /home/**
