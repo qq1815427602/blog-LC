@@ -69,13 +69,8 @@ public class ReArticles implements Serializable {
     private Integer articleState;
 
     /**
-     * 标签
-     */
-    private ReLabels reLabels;
-
-    /**
      * 文章标签一对多
      */
-    private List<ReSetArtitleLabel> artitleLabelList;
+    private List<ReLabels> labelsList;
 
 }

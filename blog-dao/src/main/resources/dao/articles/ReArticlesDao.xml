@@ -14,18 +14,9 @@
                  javaType="ReUsers"
                  resultMap="com.dao.user.ReUsersDao.ReUsersResultMap">
     </association>
-    <!--<association property="reSetArtitleLabel"
-                 javaType="ReSetArtitleLabel"
-                 resultMap="com.dao.middleware.ReSetArtitleLabelDao.ReSetArtitleLabelResultMap">
-    </association>-->
-    <association property="reLabels"
-                 javaType="ReLabels"
-                 resultMap="com.dao.articles.ReLabelsDao.ReLabelsResultMap">
-    </association>
-    <collection property="artitleLabelList" ofType="com.domain.middleware.ReSetArtitleLabel" column="article_id">
-      <id property="article_label_id" column="articleLabelId"/>
-      <result property="article_id" column="articleId"/>
-      <result property="label_id" column="labelId"/>
+    <collection property="labelsList" ofType="com.domain.articles.ReLabels" column="label_name">
+      <id property="labelId" column="label_id"/>
+      <result property="labelName" column="label_name"/>
     </collection>
 
   </resultMap>
@@ -61,20 +52,15 @@
   <!-- 模糊分页查询所有编辑完成的文章数量 -->
   <select id="pagingFuzzyQueryEditorialFinishingArticlesAmount" parameterType="map" resultType="int">
     SELECT COUNT(1)
-    FROM re_articles articles , re_users users , re_set_artitle_label artitle_label , re_labels labels
-
+    FROM re_articles a
+    LEFT JOIN re_users u ON a.user_id = u.user_id
     <where>
 
-      articles.user_id = users.user_id
+      a.article_state = 0
 
       <if test="articleTitle != null and articleTitle != ''">
         AND articles.article_title LIKE '%${articleTitle}%'
       </if>
-
-      AND articles.article_state = 0
-      AND articles.user_id = users.user_id
-      AND articles.article_id = artitle_label.article_id
-      AND artitle_label.label_id = labels.label_id
 
     </where>
   </select>
