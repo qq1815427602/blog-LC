@@ -18,6 +18,12 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReSetArtitleLabel implements Serializable {
+
+    /**
+     * 编号ID
+     */
+    private Long articleLabelId;
+
     /**
      * 文章ID
      */
@@ -27,4 +33,5 @@ public class ReSetArtitleLabel implements Serializable {
      * 标签ID
      */
     private Long labelId;
+
 }

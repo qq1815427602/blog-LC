@@ -1,5 +1,8 @@
 package com.domain.articles;
 
+import com.domain.middleware.ReSetArtitleLabel;
+import com.domain.user.ReRoles;
+import com.domain.user.ReUsers;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +10,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
 * @Description:  文章实体类
@@ -25,9 +29,19 @@ public class ReArticles implements Serializable {
     private Long articleId;
 
     /**
-     * 发表用户ID
+     * 发表用户
      */
-    private Long userId;
+    private ReUsers reUsers;
+
+    /**
+     * 帖子标题
+     */
+    private String articleTitle;
+
+    /**
+     * 帖子内容
+     */
+    private String articleContent;
 
     /**
      * 浏览量
@@ -50,8 +64,18 @@ public class ReArticles implements Serializable {
     private Long articleLikeCount;
 
     /**
-     * 状态 1:展示中 2:草稿箱 3:垃圾箱
+     * 状态 0:编辑完成 1:展示中 2:草稿箱 3:垃圾箱
      */
     private Integer articleState;
+
+    /**
+     * 标签
+     */
+    private ReLabels reLabels;
+
+    /**
+     * 文章标签一对多
+     */
+    private List<ReSetArtitleLabel> artitleLabelList;
 
 }
