@@ -1,6 +1,10 @@
 package com.controller.articles;
 
 
+import com.common.paging.Pagetion;
+import com.common.response.GenericResponse;
+import com.common.response.ResponseFormat;
+import com.common.response.ResponseResult;
 import com.domain.articles.ReArticles;
 import com.domain.articles.WangEditor;
 import com.service.articles.ReArticlesService;
@@ -39,14 +43,14 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 @RestController
 @Api(tags = "ArticlesController", value = "文章", produces = APPLICATION_JSON_VALUE)
-@RequestMapping(path = "/ReArticles")
+@RequestMapping(path = "/home")
 public class ReArticlesController {
 
     //获取数据类型
     private static final String APPLICATION_JSON_UTF8_VALUE = "application/json;charset=UTF-8";
 
     //创建控制器日志对象
-    private static final Logger ReArticlesController = LoggerFactory.getLogger(ReArticlesController.class);
+    private static final Logger ReArticlesController = LoggerFactory.getLogger(com.controller.articles.ReArticlesController.class);
 
     //注入业务层
     @Autowired
@@ -123,18 +127,16 @@ public class ReArticlesController {
         return wangEditor;
     }
 
-   /* @ApiOperation(value = "文章上传")
+    @ApiOperation(value = "文章保存为编辑完成")
     @ApiResponses({
-            @ApiResponse(code = 0,message = "上传成功"),
+            @ApiResponse(code = 200,message = "保存成功"),
     })
-    @RequestMapping(name = "文章上传" , value="/textUpload" , method = RequestMethod.POST)
-    public Map<String, Object> textUpload(HttpSession session) throws IOException {
+    @RequestMapping(name = "文章保存为编辑完成" , value="/ArticleSavedAsEditComplete" , method = RequestMethod.POST)
+    public GenericResponse ArticleSavedAsEditComplete(ReArticles reArticles , HttpSession session) throws IOException {
 
         File uploadPath = (File)session.getAttribute("uploadPath");//从session会话取出上传路径
 
-        ReArticles reArticles = new ReArticles();//从前台接受数据 ，构造方法方式存值进入富文本编辑器Bean
-
-        int state = wangeditorSerivce.addWangEditor(wangeditor);//获取添加完数据后的返回值
+        int state = reArticlesService.ArticleSavedAsEditComplete(reArticles);//获取添加完数据后的返回值
 
         if (state == 1){
 
@@ -149,7 +151,7 @@ public class ReArticlesController {
                     String fileName = uploadCache;
 
                     //上传后的项目路径用于存放用户提交后的内容
-                    String location = "F:\\夜空的研究成果\\demo\\src\\main\\resources\\static\\"+fileName;
+                    String location = "D:\\blog\\blog-images\\"+fileName;
 
                     // 获取上传后的路径
                     String FilePath = location;
@@ -176,10 +178,40 @@ public class ReArticlesController {
                 }
 
             }
-            return ResponseResult.Access_Success_No_Parameter();
+            return ResponseFormat.retParam(200,"保存成功");
         }
 
-        return ResponseResult.Access_Error_No_Parameter();
-    }*/
+        return ResponseFormat.retParam(200,"保存失败");
+    }
 
+    @ApiOperation(value = "模糊分页查询编辑完成文章")
+    @ApiResponses({
+            @ApiResponse(code = 200,message = "响应成功"),
+    })
+    @RequestMapping(name = "模糊分页查询编辑完成文章" , value="/pagingFuzzyQueryEditorialFinishingArticles" , method = RequestMethod.POST)
+    public Map<String,Object> pagingFuzzyQueryLabels(Map<String,Object> map, Pagetion pagetion, int page, int limit , String articleTitle){
+
+        // 设置页码
+        pagetion.setPageNo(page);
+
+        // 设置每页显示的数量
+        pagetion.setPageSize(limit);
+
+        // 存入需要查询的数据
+        map.put("articleTitle",articleTitle);
+
+        //存入分页对象
+        map.put("pagetion", pagetion);
+
+        //获取结果集 存入分页list
+        pagetion.setList(reArticlesService.pagingFuzzyQueryEditorialFinishingArticles(map));
+
+        //带参数从数据库里查询出来放到list的集合里
+        List<ReArticles> list = pagetion.getList();
+
+        int count = pagetion.getTotalCount();
+
+        return ResponseResult.layui_data(count,list);
+
+    }
 }

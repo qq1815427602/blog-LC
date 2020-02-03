@@ -1,11 +1,14 @@
 package com.controller.articles;
 
 import com.service.articles.ReSortsService;
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 /**
 * @Description: 分类控制器接口
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 */
 
 @RestController
+@Api(tags = "SortsController", value = "分类", produces = APPLICATION_JSON_VALUE)
 @RequestMapping(path = "/ReSorts")
 public class ReSortsController {
 
