@@ -7,4 +7,51 @@
     <result column="label_alias" jdbcType="VARCHAR" property="labelAlias" />
     <result column="label_description" jdbcType="LONGVARCHAR" property="labelDescription" />
   </resultMap>
+
+  <!-- 删除标签 -->
+  <delete id="deleteLabels" parameterType="ReLabels">
+    DELETE FROM re_labels WHERE label_id = #{labelId}
+  </delete>
+
+  <!-- 添加标签 -->
+  <insert id="addLabels" parameterType="ReLabels">
+    INSERT INTO re_labels VALUES(NULL,#{labelName},#{labelAlias},#{labelDescription})
+  </insert>
+
+  <!-- 修改标签 -->
+  <update id="updateLabels" parameterType="ReLabels">
+    UPDATE re_labels SET label_name = #{labelName} , label_alias = #{labelAlias} , label_description = #{labelAlias} WHERE label_id = #{labelId}
+  </update>
+
+  <!-- 分页模糊查询标签 -->
+  <select id="pagingFuzzyQueryLabels" parameterType="map" resultMap="ReLabelsResultMap">
+    SELECT * FROM re_labels
+
+    <where>
+
+      <if test="labelName != null and labelName != ''">
+        AND label_name LIKE '%${labelName}%'
+      </if>
+
+    </where>
+
+    ORDER BY label_id LIMIT
+    #{pageNo,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+
+  </select>
+
+  <!-- 分页模糊查询标签数量 -->
+  <select id="pagingFuzzyQueryLabelsCount" resultType="int" parameterType="map">
+    SELECT COUNT(1) FROM re_labels
+
+    <where>
+
+      <if test="labelName != null and labelName != ''">
+        AND label_name LIKE '%${labelName}%'
+      </if>
+
+    </where>
+
+  </select>
+
 </mapper>

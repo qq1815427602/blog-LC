@@ -3,7 +3,6 @@ package com.dao.user;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.GetMapping;
 
 /**
 * @Description: 角色数据访问层接口

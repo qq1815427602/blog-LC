@@ -5,7 +5,6 @@ import com.dao.user.ReRolesDao;
 import com.dao.user.ReUsersDao;
 import com.domain.user.ReUsers;
 import com.service.user.ReUsersService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -16,11 +15,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * @Description: 用户业务逻辑层接口实现

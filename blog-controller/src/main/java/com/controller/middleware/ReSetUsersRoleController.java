@@ -2,11 +2,14 @@ package com.controller.middleware;
 
 
 import com.service.middleware.ReSetUsersRoleService;
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 /**
 * @Description: 用户所属角色控制器接口
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 */
 
 @RestController
+@Api(tags = "UsersRoleController", value = "用户所属角色", produces = APPLICATION_JSON_VALUE)
 @RequestMapping(path = "/ReSetUsersRole")
 public class ReSetUsersRoleController {
 

@@ -1,11 +1,14 @@
 package com.controller.middleware;
 
 import com.service.middleware.ReSetArtitleSortService;
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 /**
 * @Description:  帖子所属分类控制器接口
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 */
 
 @RestController
+@Api(tags = "ArtitleSortController", value = "帖子所属分类", produces = APPLICATION_JSON_VALUE)
 @RequestMapping(path = "/ReSetArtitleSort")
 public class ReSetArtitleSortController {
 

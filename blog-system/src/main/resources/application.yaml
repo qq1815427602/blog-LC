@@ -1,3 +1,7 @@
+logging:
+  level:
+    com.dao: DEBUG
+
 spring:
   datasource:
     # &allowMultiQueries=true 一个方法中插入使用多条 sql 语句
