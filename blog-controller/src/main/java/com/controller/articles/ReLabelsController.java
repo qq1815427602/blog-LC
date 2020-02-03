@@ -85,7 +85,7 @@ public class ReLabelsController {
             @ApiResponse(code = 200,message = "修改成功"),
             @ApiResponse(code = 500,message = "修改失败")
     })
-    @RequestMapping(name = "添加标签接口" , value = "/updateLabels" , method = RequestMethod.POST ,produces = APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(name = "修改标签接口" , value = "/updateLabels" , method = RequestMethod.POST ,produces = APPLICATION_JSON_UTF8_VALUE)
     public GenericResponse updateLabels(ReLabels reLabels) {
 
         int judge = reLabelsService.updateLabels(reLabels);

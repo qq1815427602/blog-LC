@@ -1,3 +1,10 @@
+### 2020年2月3日12:57:00 新增API
+模糊分页查询编辑完成文章 /home/pagingFuzzyQueryEditorialFinishingArticles
+删除标签接口 /home/deleteLabels
+添加标签接口 /home/addLabels
+修改标签接口 /home/updateLabels
+模糊分页查询标签 /home/pagingFuzzyQueryLabels
+
 ### 2020/1/31 23:42:18 新增API 
 文章图片上传接口 /ReArticles/ReArticlesImagesUpload
 
