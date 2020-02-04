@@ -25,6 +25,13 @@ public interface ReArticlesService {
      * @Author: 夜空
      * @Date: 2020/2/1
      */
-    List<ReArticles> pagingFuzzyQueryEditorialFinishingArticles(Map<String, Object> map);
+    List<ReArticles> pagingFuzzyQueryEditorialFinishingArticles(ReArticles reArticles);
+
+    /**
+     * @Description:  永久删除垃圾箱文章
+     * @Author: 夜空
+     * @Date: 2020/2/4
+     */
+    int deleteTrashArticles(ReArticles reArticles);
 
 }

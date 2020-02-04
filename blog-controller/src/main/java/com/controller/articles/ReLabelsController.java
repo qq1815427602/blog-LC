@@ -1,11 +1,11 @@
 package com.controller.articles;
 
 
-import com.common.paging.Pagetion;
 import com.common.response.GenericResponse;
 import com.common.response.ResponseFormat;
-import com.common.response.ResponseResult;
 import com.domain.articles.ReLabels;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.service.articles.ReLabelsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
@@ -31,7 +30,7 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 @RestController
 @Api(tags = "LabelsController", value = "标签", produces = APPLICATION_JSON_VALUE)
-@RequestMapping(path = "/home")
+@RequestMapping(path = "/Labels")
 public class ReLabelsController {
 
     //获取数据类型
@@ -103,29 +102,15 @@ public class ReLabelsController {
             @ApiResponse(code = 200,message = "响应成功"),
     })
     @RequestMapping(name = "模糊分页查询标签",path = "/pagingFuzzyQueryLabels",method = RequestMethod.POST,produces = APPLICATION_JSON_UTF8_VALUE)
-    public Map<String,Object> pagingFuzzyQueryLabels(Map<String,Object> map, Pagetion pagetion, int page, int limit , String labelName){
+    public GenericResponse pagingFuzzyQueryLabels(int pageNum, int pageSize , ReLabels reLabels){
 
-        // 设置页码
-        pagetion.setPageNo(page);
+        PageHelper.startPage(pageNum,pageSize);
 
-        // 设置每页显示的数量
-        pagetion.setPageSize(limit);
+        List<ReLabels> list = reLabelsService.pagingFuzzyQueryLabels(reLabels);
 
-        // 存入需要查询的数据
-        map.put("labelName",labelName);
+        PageInfo<ReLabels> pageInfo = new PageInfo<>(list);
 
-        //存入分页对象
-        map.put("pagetion", pagetion);
-
-        //获取结果集 存入分页list
-        pagetion.setList(reLabelsService.pagingFuzzyQueryLabels(map));
-
-        //带参数从数据库里查询出来放到list的集合里
-        List<ReLabels> list = pagetion.getList();
-
-        int count = pagetion.getTotalCount();
-
-        return ResponseResult.layui_data(count,list);
+        return ResponseFormat.retParam(200,pageInfo);
 
     }
 

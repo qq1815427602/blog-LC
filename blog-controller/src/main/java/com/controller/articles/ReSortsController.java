@@ -4,8 +4,6 @@ package com.controller.articles;
 import com.common.response.GenericResponse;
 import com.common.response.ResponseFormat;
 import com.domain.articles.ReSorts;
-import com.domain.articles.ReSorts;
-import com.domain.articles.WangEditor;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.service.articles.ReSortsService;
@@ -30,7 +28,7 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 @RestController
 @Api(tags = "SortsController", value = "分类", produces = APPLICATION_JSON_VALUE)
-@RequestMapping(path = "/home")
+@RequestMapping(path = "/Sorts")
 public class ReSortsController {
 
     //获取数据类型
@@ -49,11 +47,15 @@ public class ReSortsController {
     })
     @RequestMapping(name = "分类的分页模糊查询" , value="/SortsPagingFuzzyQuery" , method = RequestMethod.POST ,produces = APPLICATION_JSON_UTF8_VALUE)
     public GenericResponse SortsPagingFuzzyQuery(int pageNum, int pageSize , ReSorts reSorts) {
-        PageHelper.startPage(pageNum,pageSize);
-        List<ReSorts> list = reSortsService.SortsPagingFuzzyQuery(reSorts);
-//        PageInfo<ReSorts> pageInfo = new PageInfo<>(list);
 
-        return ResponseFormat.retParam(200,list);
+        PageHelper.startPage(pageNum,pageSize);
+
+        List<ReSorts> list = reSortsService.SortsPagingFuzzyQuery(reSorts);
+
+        PageInfo<ReSorts> pageInfo = new PageInfo<>(list);
+
+        return ResponseFormat.retParam(200,pageInfo);
+
     }
 
     @ApiOperation(value = "删除分类")

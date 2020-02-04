@@ -2,13 +2,13 @@ package com.controller.articles;
 
 
 import com.common.jwt.JwtTokenUtil;
-import com.common.paging.Pagetion;
 import com.common.response.GenericResponse;
 import com.common.response.ResponseFormat;
-import com.common.response.ResponseResult;
 import com.domain.articles.ReArticles;
 import com.domain.articles.WangEditor;
 import com.domain.user.ReUsers;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.service.articles.ReArticlesService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -45,7 +45,7 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 @RestController
 @Api(tags = "ArticlesController", value = "文章", produces = APPLICATION_JSON_VALUE)
-@RequestMapping(path = "/homeTest")
+@RequestMapping(path = "/Articles")
 public class ReArticlesController {
 
     //获取数据类型
@@ -211,29 +211,36 @@ public class ReArticlesController {
             @ApiResponse(code = 200,message = "响应成功"),
     })
     @RequestMapping(name = "模糊分页查询编辑完成文章" , value="/pagingFuzzyQueryEditorialFinishingArticles" , method = RequestMethod.POST)
-    public Map<String,Object> pagingFuzzyQueryLabels(Map<String,Object> map, Pagetion pagetion, int page, int limit , String articleTitle){
+    public GenericResponse pagingFuzzyQueryLabels(int pageNum, int pageSize , ReArticles reArticles){
 
-        // 设置页码
-        pagetion.setPageNo(page);
+        PageHelper.startPage(pageNum,pageSize);
 
-        // 设置每页显示的数量
-        pagetion.setPageSize(limit);
+        List<ReArticles> list = reArticlesService.pagingFuzzyQueryEditorialFinishingArticles(reArticles);
 
-        // 存入需要查询的数据
-        map.put("articleTitle",articleTitle);
+        PageInfo<ReArticles> pageInfo = new PageInfo<>(list);
 
-        //存入分页对象
-        map.put("pagetion", pagetion);
-
-        //获取结果集 存入分页list
-        pagetion.setList(reArticlesService.pagingFuzzyQueryEditorialFinishingArticles(map));
-
-        //带参数从数据库里查询出来放到list的集合里
-        List<ReArticles> list = pagetion.getList();
-
-        int count = pagetion.getTotalCount();
-
-        return ResponseResult.layui_data(count,list);
+        return ResponseFormat.retParam(200,pageInfo);
 
     }
+
+    @ApiOperation(value = "永久删除垃圾箱文章")
+    @ApiResponses({
+            @ApiResponse(code = 200,message = "删除文章成功"),
+            @ApiResponse(code = 500,message = "删除文章失败"),
+    })
+    @RequestMapping(name = "永久删除垃圾箱文章" , value="/deleteTrashArticles" , method = RequestMethod.POST)
+    public GenericResponse deleteTrashArticles(ReArticles reArticles){
+
+        int judge = reArticlesService.deleteTrashArticles(reArticles);
+
+        if (judge > 0){
+            return ResponseFormat.retParam(200,"删除文章成功");
+        }
+
+        return ResponseFormat.retParam(500,"删除文章失败");
+
+    }
+
+
+
 }

@@ -39,6 +39,6 @@ public interface ReLabelsService {
      * @Author: 夜空
      * @Date: 2020/2/2
      */
-    List<ReLabels> pagingFuzzyQueryLabels(Map<String, Object> map);
+    List<ReLabels> pagingFuzzyQueryLabels(ReLabels reLabels);
 
 }
