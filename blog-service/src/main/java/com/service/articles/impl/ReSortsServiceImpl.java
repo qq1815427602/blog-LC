@@ -26,7 +26,37 @@ public class ReSortsServiceImpl implements ReSortsService {
      * @Date: 2020/2/3
      */
     @Override
-    public List<ReSorts> SortsPagingFuzzyQuery(String sortName) {
-        return reSortsDao.SortsPagingFuzzyQuery(sortName);
+    public List<ReSorts> SortsPagingFuzzyQuery(ReSorts reSorts) {
+        return reSortsDao.SortsPagingFuzzyQuery(reSorts);
+    }
+
+    /**
+    * @Description:  删除分类
+    * @Author: 夜空
+    * @Date: 2020/2/4
+    */
+    @Override
+    public int deleteSorts(ReSorts reSorts) {
+        return reSortsDao.deleteSorts(reSorts);
+    }
+
+    /**
+    * @Description:  添加分类
+    * @Author: 夜空
+    * @Date: 2020/2/4
+    */
+    @Override
+    public int addSorts(ReSorts reSorts) {
+        return reSortsDao.addSorts(reSorts);
+    }
+
+    /**
+    * @Description:  修改分类
+    * @Author: 夜空
+    * @Date: 2020/2/4
+    */
+    @Override
+    public int updateSorts(ReSorts reSorts) {
+        return reSortsDao.updateSorts(reSorts);
     }
 }

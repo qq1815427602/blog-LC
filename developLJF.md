@@ -1,3 +1,9 @@
+### 2020年2月4日20:38:01 新增API
+分类的分页模糊查询 /home/SortsPagingFuzzyQuery
+删除分类接口 /home/deleteSorts
+添加分类接口 /home/addSorts
+修改分类接口 /home/updateSorts
+
 ### 2020年2月3日12:57:00 新增API
 模糊分页查询编辑完成文章 /home/pagingFuzzyQueryEditorialFinishingArticles
 删除标签接口 /home/deleteLabels

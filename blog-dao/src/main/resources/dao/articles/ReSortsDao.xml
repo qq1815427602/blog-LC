@@ -10,8 +10,23 @@
   </resultMap>
 
   <!-- 分类的分页模糊查询 -->
-  <select id="SortsPagingFuzzyQuery" parameterType="String" resultMap="ReSortsResultMap">
+  <select id="SortsPagingFuzzyQuery" parameterType="ReSorts" resultMap="ReSortsResultMap">
     SELECT * FROM re_sorts WHERE sort_name LIKE '%${sortName}%'
   </select>
+
+  <!-- 删除分类 -->
+  <delete id="deleteSorts" parameterType="ReSorts">
+    DELETE FROM re_sorts WHERE sort_id = #{sortId}
+  </delete>
+
+  <!-- 添加分类 -->
+  <insert id="addSorts" parameterType="ReSorts">
+    INSERT INTO re_sorts VALUES(NULL,#{sortName},#{sortAlias},#{parentSortId},#{sortDescription})
+  </insert>
+
+  <!-- 修改分类 -->
+  <update id="updateSorts" parameterType="ReSorts">
+    UPDATE re_sorts SET sort_name = #{sortName} , sort_alias = #{sortAlias} , parent_sort_id = #{parentSortId} , sort_description = #{sortDescription} WHERE sort_id = #{sortId}
+  </update>
 
 </mapper>
