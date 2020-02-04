@@ -1,6 +1,5 @@
 package com.service.articles.impl;
 
-import com.common.paging.Pagetion;
 import com.dao.articles.ReArticlesDao;
 import com.domain.articles.ReArticles;
 import com.service.articles.ReArticlesService;
@@ -38,21 +37,17 @@ public class ReArticlesServiceImpl implements ReArticlesService {
      * @Date: 2020/2/1
      */
     @Override
-    public List<ReArticles> pagingFuzzyQueryEditorialFinishingArticles(Map<String, Object> map) {
+    public List<ReArticles> pagingFuzzyQueryEditorialFinishingArticles(ReArticles reArticles) {
+        return reArticlesDao.pagingFuzzyQueryEditorialFinishingArticles(reArticles);
+    }
 
-        //获取Map中的page键对应的值
-        Pagetion page =(Pagetion) map.get("pagetion");
-
-        //设置总记录数
-        page.setTotalCount(reArticlesDao.pagingFuzzyQueryEditorialFinishingArticlesAmount(map));
-
-        //存入当前页码
-        map.put("pageNo", (page.getPageNo() -1) * page.getPageSize());
-
-        //每页显示数量
-        map.put("pageSize", page.getPageSize());
-
-        return reArticlesDao.pagingFuzzyQueryEditorialFinishingArticles(map);
-
+    /**
+    * @Description:  永久删除垃圾箱文章
+    * @Author: 夜空
+    * @Date: 2020/2/4
+    */
+    @Override
+    public int deleteTrashArticles(ReArticles reArticles) {
+        return reArticlesDao.deleteTrashArticles(reArticles);
     }
 }

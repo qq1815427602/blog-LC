@@ -43,13 +43,6 @@ public interface ReLabelsDao {
     * @Author: 夜空
     * @Date: 2020/2/2
     */
-    List<ReLabels> pagingFuzzyQueryLabels(Map<String, Object> map);
-
-    /**
-    * @Description:  分页模糊查询标签数量
-    * @Author: 夜空
-    * @Date: 2020/2/2
-    */
-    int pagingFuzzyQueryLabelsCount(Map<String, Object> map);
+    List<ReLabels> pagingFuzzyQueryLabels(ReLabels reLabels);
 
 }

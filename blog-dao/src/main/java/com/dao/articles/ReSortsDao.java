@@ -21,6 +21,27 @@ public interface ReSortsDao {
     * @Author: 夜空
     * @Date: 2020/2/3
     */
-    List<ReSorts> SortsPagingFuzzyQuery(String sortName);
+    List<ReSorts> SortsPagingFuzzyQuery(ReSorts reSorts);
+
+    /**
+    * @Description:  删除分类
+    * @Author: 夜空
+    * @Date: 2020/2/4
+    */
+    int deleteSorts (ReSorts reSorts);
+
+    /**
+    * @Description:  添加分类
+    * @Author: 夜空
+    * @Date: 2020/2/4
+    */
+    int addSorts(ReSorts reSorts);
+
+    /**
+    * @Description:  修改分类
+    * @Author: 夜空
+    * @Date: 2020/2/4
+    */
+    int updateSorts(ReSorts reSorts);
 
 }

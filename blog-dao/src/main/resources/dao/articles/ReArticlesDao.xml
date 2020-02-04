@@ -27,7 +27,7 @@
   </insert>
 
   <!-- 模糊分页查询编辑完成的文章 -->
-  <select id="pagingFuzzyQueryEditorialFinishingArticles" parameterType="map" resultMap="ReArticlesResultMap">
+  <select id="pagingFuzzyQueryEditorialFinishingArticles" parameterType="ReArticles" resultMap="ReArticlesResultMap">
 
     SELECT a.* , l.label_name , u.user_name
     FROM re_articles a
@@ -44,25 +44,11 @@
 
     </where>
 
-    ORDER BY a.article_id LIMIT
-    #{pageNo,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
-
   </select>
 
-  <!-- 模糊分页查询所有编辑完成的文章数量 -->
-  <select id="pagingFuzzyQueryEditorialFinishingArticlesAmount" parameterType="map" resultType="int">
-    SELECT COUNT(1)
-    FROM re_articles a
-    LEFT JOIN re_users u ON a.user_id = u.user_id
-    <where>
-
-      a.article_state = 0
-
-      <if test="articleTitle != null and articleTitle != ''">
-        AND articles.article_title LIKE '%${articleTitle}%'
-      </if>
-
-    </where>
-  </select>
+  <!-- 永久删除垃圾箱文章 -->
+  <delete id="deleteTrashArticles" parameterType="ReArticles">
+    DELETE FROM `re_articles` WHERE article_state = 3 AND article_id = #{articleId}
+  </delete>
 
 </mapper>

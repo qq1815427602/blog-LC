@@ -29,13 +29,13 @@ public interface ReArticlesDao {
     * @Author: 夜空
     * @Date: 2020/2/1
     */
-    List<ReArticles> pagingFuzzyQueryEditorialFinishingArticles(Map<String, Object> map);
+    List<ReArticles> pagingFuzzyQueryEditorialFinishingArticles(ReArticles reArticles);
 
     /**
-     * @Description: 模糊分页查询编辑完成文章数量
-     * @author: 罗斯基
-     * @date: 2019/12/26 18:09
-     */
-    int pagingFuzzyQueryEditorialFinishingArticlesAmount(Map<String, Object> map);
+    * @Description:  永久删除垃圾箱文章
+    * @Author: 夜空
+    * @Date: 2020/2/4
+    */
+    int deleteTrashArticles(ReArticles reArticles);
 
 }
