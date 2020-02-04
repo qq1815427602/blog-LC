@@ -22,7 +22,7 @@
   </resultMap>
 
   <!-- 文章另存为编辑完成状态 -->
-  <insert id="addArticles" parameterType="ReArticles">
+  <insert id="ArticleSavedAsEditComplete" parameterType="ReArticles">
     INSERT INTO re_articles VALUES (NULL,#{reUsers.userId},#{articleTitle},#{articleContent},0,0,#{articleDate},0,0);
   </insert>
 

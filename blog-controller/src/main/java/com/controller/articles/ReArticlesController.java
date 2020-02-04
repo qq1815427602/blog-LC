@@ -1,12 +1,14 @@
 package com.controller.articles;
 
 
+import com.common.jwt.JwtTokenUtil;
 import com.common.paging.Pagetion;
 import com.common.response.GenericResponse;
 import com.common.response.ResponseFormat;
 import com.common.response.ResponseResult;
 import com.domain.articles.ReArticles;
 import com.domain.articles.WangEditor;
+import com.domain.user.ReUsers;
 import com.service.articles.ReArticlesService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -43,7 +45,7 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 @RestController
 @Api(tags = "ArticlesController", value = "文章", produces = APPLICATION_JSON_VALUE)
-@RequestMapping(path = "/home")
+@RequestMapping(path = "/homeTest")
 public class ReArticlesController {
 
     //获取数据类型
@@ -51,6 +53,12 @@ public class ReArticlesController {
 
     //创建控制器日志对象
     private static final Logger ReArticlesController = LoggerFactory.getLogger(com.controller.articles.ReArticlesController.class);
+
+    @Autowired
+    private HttpServletRequest httpServletRequest;
+
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
 
     //注入业务层
     @Autowired
@@ -133,6 +141,20 @@ public class ReArticlesController {
     })
     @RequestMapping(name = "文章保存为编辑完成" , value="/ArticleSavedAsEditComplete" , method = RequestMethod.POST)
     public GenericResponse ArticleSavedAsEditComplete(ReArticles reArticles , HttpSession session) throws IOException {
+
+        //获取用户Token
+        String token = httpServletRequest.getHeader("Authorization").substring("Bearer ".length());
+
+        //获取用户ID
+        long userId = (long)jwtTokenUtil.getUserId(token);
+
+        //创建用户对象
+        ReUsers reUsers = new ReUsers();
+
+        reUsers.setUserId(userId);
+
+        //把用户对象设置进入文章属性
+        reArticles.setReUsers(reUsers);
 
         File uploadPath = (File)session.getAttribute("uploadPath");//从session会话取出上传路径
 

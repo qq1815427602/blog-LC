@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 /**
@@ -29,6 +31,9 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 @Api(tags = "HomeController", value = "主页", produces = APPLICATION_JSON_VALUE)
 @RequestMapping("/home")
 public class ReUsersController {
+
+    @Autowired
+    private HttpServletRequest httpServletRequest;
 
     //获取数据类型
     private static final String APPLICATION_JSON_UTF8_VALUE = "application/json;charset=UTF-8";

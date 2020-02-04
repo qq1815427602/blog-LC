@@ -8,4 +8,10 @@
     <result column="parent_sort_id" jdbcType="BIGINT" property="parentSortId" />
     <result column="sort_description" jdbcType="LONGVARCHAR" property="sortDescription" />
   </resultMap>
+
+  <!-- 分类的分页模糊查询 -->
+  <select id="SortsPagingFuzzyQuery" parameterType="String" resultMap="ReSortsResultMap">
+    SELECT * FROM re_sorts WHERE sort_name LIKE '%${sortName}%'
+  </select>
+
 </mapper>

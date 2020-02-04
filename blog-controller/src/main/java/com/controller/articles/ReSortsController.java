@@ -1,12 +1,21 @@
 package com.controller.articles;
 
+
+import com.domain.articles.ReSorts;
+import com.domain.articles.WangEditor;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.service.articles.ReSortsService;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
@@ -18,7 +27,7 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 @RestController
 @Api(tags = "SortsController", value = "分类", produces = APPLICATION_JSON_VALUE)
-@RequestMapping(path = "/ReSorts")
+@RequestMapping(path = "/home")
 public class ReSortsController {
 
     //获取数据类型
@@ -30,5 +39,13 @@ public class ReSortsController {
     //注入业务层
     @Autowired
     ReSortsService reSortsService;
+
+    @GetMapping(name = "分类的分页模糊查询API" , value="/SortsPagingFuzzyQuery")
+    public PageInfo<ReSorts> querySortsByParamPages(int pageNum, int pageSize , String sortName) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<ReSorts> list = reSortsService.SortsPagingFuzzyQuery(sortName);
+        PageInfo<ReSorts> pageInfo = new PageInfo<>(list);
+        return pageInfo;
+    }
 
 }
