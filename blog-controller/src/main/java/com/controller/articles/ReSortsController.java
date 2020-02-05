@@ -112,6 +112,15 @@ public class ReSortsController {
 
     }
 
+    @ApiOperation(value = "获取分类树形菜单")
+    @ApiResponses({
+            @ApiResponse(code = 200,message = "获取分类树形菜单成功"),
+    })
+    @RequestMapping(name = "获取分类树形菜单" , value = "/SortsTreeMenu" , method = RequestMethod.POST ,produces = APPLICATION_JSON_UTF8_VALUE)
+    public GenericResponse SortsTreeMenu() {
 
+        List<ReSorts> SirtsTreeMenu = reSortsService.SortsTreeMenu();
 
+        return ResponseFormat.retParam(200,SirtsTreeMenu);
+    }
 }

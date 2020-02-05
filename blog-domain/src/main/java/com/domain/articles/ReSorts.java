@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
 * @Description:  分类实体类
@@ -36,11 +37,16 @@ public class ReSorts implements Serializable {
     /**
      * 父分类ID
      */
-    private Long parentSortId;
+    private String parentSortId;
 
     /**
      * 分类描述
      */
     private String sortDescription;
+
+    /**
+     * 子菜单
+     */
+    private List<ReSorts> sortsChildrenList;
 
 }

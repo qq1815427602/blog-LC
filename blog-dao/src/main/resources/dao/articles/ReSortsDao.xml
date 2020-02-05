@@ -5,7 +5,7 @@
     <id column="sort_id" jdbcType="BIGINT" property="sortId" />
     <result column="sort_name" jdbcType="VARCHAR" property="sortName" />
     <result column="sort_alias" jdbcType="VARCHAR" property="sortAlias" />
-    <result column="parent_sort_id" jdbcType="BIGINT" property="parentSortId" />
+    <result column="parent_sort_id" jdbcType="VARCHAR" property="parentSortId" />
     <result column="sort_description" jdbcType="LONGVARCHAR" property="sortDescription" />
   </resultMap>
 
@@ -28,5 +28,10 @@
   <update id="updateSorts" parameterType="ReSorts">
     UPDATE re_sorts SET sort_name = #{sortName} , sort_alias = #{sortAlias} , parent_sort_id = #{parentSortId} , sort_description = #{sortDescription} WHERE sort_id = #{sortId}
   </update>
+
+  <!-- 获取分类树形菜单 -->
+  <select id="SortsTreeMenu" resultMap="ReSortsResultMap">
+    SELECT * FROM re_sorts
+  </select>
 
 </mapper>

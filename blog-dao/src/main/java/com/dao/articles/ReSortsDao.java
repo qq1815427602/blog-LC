@@ -44,4 +44,11 @@ public interface ReSortsDao {
     */
     int updateSorts(ReSorts reSorts);
 
+    /**
+    * @Description:  获取分类树形菜单
+    * @Author: 夜空
+    * @Date: 2020/2/5
+    */
+    List<ReSorts> SortsTreeMenu();
+
 }
