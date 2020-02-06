@@ -34,16 +34,12 @@
     JOIN re_set_artitle_label al ON a.article_id = al.article_id
     JOIN re_labels l ON al.label_id = l.label_id
     LEFT JOIN re_users u ON a.user_id = u.user_id
-
     <where>
       a.article_state = 0
-
       <if test="articleTitle != null and articleTitle != ''">
-        AND articles.article_title LIKE '%${articleTitle}%'
+        AND a.article_title LIKE '%${articleTitle}%'
       </if>
-
     </where>
-
   </select>
 
   <!-- 永久删除垃圾箱文章 -->

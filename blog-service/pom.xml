@@ -22,6 +22,12 @@
             <groupId>com</groupId>
             <artifactId>blog-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-commons</artifactId>
+            <version>1.6.0-M1</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
 </project>
