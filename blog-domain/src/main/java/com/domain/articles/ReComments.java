@@ -1,5 +1,6 @@
 package com.domain.articles;
 
+import com.domain.user.ReUsers;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
 * @Description:  评论实体类
@@ -27,12 +29,12 @@ public class ReComments implements Serializable {
     /**
      * 发表用户ID
      */
-    private Long userId;
+    private ReUsers reUsers;
 
     /**
-     * 评论博文ID
+     * 评论文章ID
      */
-    private Long articleId;
+    private ReArticles reArticles;
 
     /**
      * 点赞数
@@ -47,7 +49,7 @@ public class ReComments implements Serializable {
     /**
      * 父评论ID
      */
-    private Long parentCommentId;
+    private String parentCommentId;
 
     /**
      * 状态 1:正常展示 2:冻结中 3:黑名单封禁
@@ -58,5 +60,10 @@ public class ReComments implements Serializable {
      * 评论内容
      */
     private String commentContent;
+
+    /**
+     * 子评论
+     */
+    private List<ReComments> commentsChildrenList;
 
 }

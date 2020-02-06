@@ -3,12 +3,26 @@
 <mapper namespace="com.dao.articles.ReCommentsDao">
   <resultMap id="ReCommentsResultMap" type="com.domain.articles.ReComments">
     <id column="comment_id" jdbcType="BIGINT" property="commentId" />
-    <result column="user_id" jdbcType="BIGINT" property="userId" />
-    <result column="article_id" jdbcType="BIGINT" property="articleId" />
     <result column="comment_like_count" jdbcType="BIGINT" property="commentLikeCount" />
     <result column="comment_date" jdbcType="TIMESTAMP" property="commentDate" />
-    <result column="parent_comment_id" jdbcType="BIGINT" property="parentCommentId" />
+    <result column="parent_comment_id" jdbcType="VARCHAR" property="parentCommentId" />
     <result column="comment_state" jdbcType="INTEGER" property="commentState" />
     <result column="comment_content" jdbcType="LONGVARCHAR" property="commentContent" />
+    <association property="reArticles"
+                 javaType="ReArticles"
+                 resultMap="com.dao.articles.ReArticlesDao.ReArticlesResultMap">
+    </association>
+    <association property="reUsers"
+                 javaType="ReUsers"
+                 resultMap="com.dao.user.ReUsersDao.ReUsersResultMap">
+    </association>
   </resultMap>
+
+
+  <!-- 获取文章的树形评论 -->
+  <select id="ArticlesTreeComments" resultMap="ReCommentsResultMap" parameterType="ReComments">
+    SELECT c.* , u.user_name
+    FROM re_comments c LEFT JOIN re_users u ON c.user_id = u.user_id WHERE c.article_id = #{reArticles.articleId}
+  </select>
+
 </mapper>
