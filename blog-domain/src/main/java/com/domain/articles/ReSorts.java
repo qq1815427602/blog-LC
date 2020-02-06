@@ -45,7 +45,7 @@ public class ReSorts implements Serializable {
     private String sortDescription;
 
     /**
-     * 子菜单
+     * 子分类
      */
     private List<ReSorts> sortsChildrenList;
 

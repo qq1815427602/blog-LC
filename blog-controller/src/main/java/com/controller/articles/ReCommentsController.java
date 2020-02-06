@@ -1,12 +1,22 @@
 package com.controller.articles;
 
+import com.common.response.GenericResponse;
+import com.common.response.ResponseFormat;
+import com.domain.articles.ReComments;
+import com.domain.articles.ReSorts;
 import com.service.articles.ReCommentsService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
@@ -18,7 +28,7 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 @RestController
 @Api(tags = "CommentsController", value = "评论", produces = APPLICATION_JSON_VALUE)
-@RequestMapping(path = "/ReComments")
+@RequestMapping(path = "/comments")
 public class ReCommentsController {
 
     //获取数据类型
@@ -30,5 +40,17 @@ public class ReCommentsController {
     //注入业务层
     @Autowired
     ReCommentsService reCommentsService;
+
+    @ApiOperation(value = "获取文章的树形评论")
+    @ApiResponses({
+            @ApiResponse(code = 200,message = "获取文章的树形评论"),
+    })
+    @RequestMapping(name = "获取文章的树形评论" , value = "/ArticlesTreeComments" , method = RequestMethod.POST ,produces = APPLICATION_JSON_UTF8_VALUE)
+    public GenericResponse ArticlesTreeComments(ReComments Comments) {
+
+        List<ReComments> CommentsTreeMenu = reCommentsService.ArticlesTreeComments(Comments);
+
+        return ResponseFormat.retParam(200,CommentsTreeMenu);
+    }
 
 }
