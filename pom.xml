@@ -12,7 +12,6 @@
         <module>blog-logging</module>
         <module>blog-security</module>
         <module>blog-system</module>
-        <module>blog-quartz</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
