@@ -5,7 +5,7 @@ logging:
 spring:
   datasource:
     # &allowMultiQueries=true 一个方法中插入使用多条 sql 语句
-    url: jdbc:mysql://localhost:3306/re_blog?useSSL=false&allowMultiQueries=true&characterEncoding=UTF8&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/re_blog?useSSL=false&allowMultiQueries=true&characterEncoding=UTF8&serverTimezone=GMT%2B8
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
@@ -72,12 +72,12 @@ spring:
       #上传的临时目录
       location: /
 mybatis:
-  mapper-locations:
-    - classpath:dao/articles/*.xml
-    - classpath:dao/log/*.xml
-    - classpath:dao/middleware/*.xml
-    - classpath:dao/user/*.xml
-  type-aliases-package: com.domain
+                          mapper-locations:
+                            - classpath:dao/articles/*.xml
+                            - classpath:dao/log/*.xml
+                            - classpath:dao/middleware/*.xml
+                            - classpath:dao/user/*.xml
+                          type-aliases-package: com.domain
 server:
   port: 8088
 jwt:

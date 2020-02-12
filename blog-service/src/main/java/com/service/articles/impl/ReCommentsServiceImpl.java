@@ -53,6 +53,16 @@ public class ReCommentsServiceImpl implements ReCommentsService {
     }
 
     /**
+    * @Description:  新增评论
+    * @Author: 夜空
+    * @Date: 2020/2/6
+    */
+    @Override
+    public int addComments(ReComments Comments) {
+        return reCommentsDao.addComments(Comments);
+    }
+
+    /**
      * @Description:  获取父节点的子节点方法
      * @Author: 夜空
      * @Date: 2020/2/5
