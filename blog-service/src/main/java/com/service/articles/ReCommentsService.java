@@ -20,4 +20,11 @@ public interface ReCommentsService {
      */
     List<ReComments> ArticlesTreeComments(ReComments Comments);
 
+    /**
+     * @Description:  新增评论
+     * @Author: 夜空
+     * @Date: 2020/2/6
+     */
+    int addComments(ReComments Comments);
+
 }

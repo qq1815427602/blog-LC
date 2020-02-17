@@ -25,4 +25,17 @@
     FROM re_comments c LEFT JOIN re_users u ON c.user_id = u.user_id WHERE c.article_id = #{reArticles.articleId}
   </select>
 
+  <!-- 新增评论 -->
+  <insert id="addComments" parameterType="ReComments">
+    INSERT INTO re_comments VALUES
+     <choose>
+      <when test="parentCommentId != null and parentCommentId != ''">
+        (NULL,#{reUsers.userId},#{reArticles.articleId},0,NOW(),#{commentContent},#{parentCommentId},1);
+      </when>
+      <otherwise>
+        (NULL,#{reUsers.userId},#{reArticles.articleId},0,NOW(),#{commentContent},0,1);
+      </otherwise>
+    </choose>
+  </insert>
+
 </mapper>
